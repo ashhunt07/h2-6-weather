@@ -1,0 +1,54 @@
+body{
+    width: 100%;
+    background-color:#FAFAFA;
+}
+
+h1{
+    width: 100%;
+    font-size:2em;
+    color:#fff;
+}
+
+#header{
+    min-width: 100%; 
+    background-color: #333A41;
+    text-align: center;
+}
+
+#container{
+    width:100%;
+    background-color:pink;
+}
+
+.lookUp{
+    background-color:purple;
+}
+
+.inputCity{
+    width:100%;
+    clear: both;
+}
+
+.searchBtn{
+    width:60%;
+    padding: 1em 5%;
+    clear: both;
+    color:white;
+}
+
+.seachList{
+    width:60%;
+    display: block;
+}
+
+footer{
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 1.25em 0 .75em;
+    margin-top: 3em;
+    background: #333A41;
+    color: #fff;
+    text-align: center;
+}
