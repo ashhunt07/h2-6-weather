@@ -1,29 +1,65 @@
 
 //global variables
-var apiKey = "67d19e2b34aa4341617b42310a8a49b4";
-var currentConditions = "https://api.openweathermap.org/data/2.5/weather?appid=" +apiKey;
-var fiveDay ="https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&appid=" + apiKey;
-var uvIndex ="https://api.openweathermap.org/data/2.5/uvi?appid={appid}&lat={lat}&lon={lon}";
+let city = "Austin";
 
-var city = "";
+const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
+let currentURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
+let dailyURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&exclude=hourly,minutely&appid=" + apiKey;
+
 //pull from local storage
 // let value = localStorage.getItem(lastCitySearch);
 // searchHistory.val(value);
 
 $(document).ready(function(){
 
+function getWeather(){
+    
+    
+    $.ajax({
+        url: dailyURL,
+        method: "GET"
+    }).then(function(forecast){
+        console.log(forecast);
 
-// //button to save last search to local storage
-// buttonEl.on("click", function(){
-//     var lastCitySearch = $(this).sibling('textarea').val();
-//     localStorage.setItem(lastCitySearch);
+        var lat = forecast.city.coord.lat;
+        var lon = forecast.city.coord.lon;
+        console.log(forecast.city.coord);
+        
+    
+    
+    $.ajax({
+        url: currentURL,
+        method: "GET"
+    }).then(function(response){
+        console.log(response);
+
+        var results = response.data;
+
+        for (var i = 0; i < results.length; i++){
+
+        currentCity.text(response.name);
+        console.log(response.name);
+        
+        // console.log(response.weather[0].description);
+        var iconCode = response.weather[0].icon
+        var iconurl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+        weatherIcon.html('src', iconurl);
+        console.log(response.weather[0].icon);
+        
+        humidity.text(response.main.humidity);
+        console.log(response.main.humidity);
+        
+        cityTemp.text(response.main.temp);
+        console.log(response.main.temp);
+
+        windSpeed.text(response.wind.speed);
+        console.log(response.wind.speed);
 
 
-    // for (i = 0; i < newCities.length; ++i){
+        }
 
-    // }
-
-// })
+        })    
+    
 
     var cont = $("#container");
         cont.attr('class', 'content row col-12');
@@ -42,8 +78,8 @@ $(document).ready(function(){
     var buttonEl = $("<button>");
         buttonEl.attr('class', 'btn btn-primary searchBtn');
         var searchEl = document.createTextNode("Click me");
-        // searchEl.innerHTML = "Do Something";
-        //buttonEl.value = 'text';
+
+
 
     var searchHistory = $("<p>")
         searchHistory.attr('class', 'seachList')
@@ -84,6 +120,7 @@ lookUp.append(buttonEl);
     buttonEl.append(searchEl);
 lookUp.append(searchHistory);
 
+
 //append results
 cont.append(results);
 
@@ -102,34 +139,26 @@ results.append(weatherEl);
 
 //append weather block elements
 weatherEl.append(weatherDate);
+
 weatherEl.append(weatherIcon);
 weatherEl.append(weatherTemp);
 weatherEl.append(weatherHumid);
 
 
+buttonEl.on("click", function() {
+event.preventDefault();
+
+})
+
+
+    
 
 
 
+})
+    }
 
-// var queryURL = "api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid={67d19e2b34aa4341617b42310a8a49b4}";
-
-// $.ajax({
-//     url: queryURL,
-//     method: "GET"
-// }).then(function(response) {
-//     console.log(response);
-// });
-
-
-
-//format date with moment.js
-
-//5 day api
-//api.openweathermap.org/data/2.5/forecast?q={city name}&appid={your api key}
-
-
-//inside of the first API Call
-//Forcast API
-//Uv API
+    getWeather()
 
 });
+

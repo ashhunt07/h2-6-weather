@@ -41,6 +41,11 @@ h1{
     display: block;
 }
 
+.searchResult{
+    padding: 1em 10%;
+    overflow: hidden;
+}
+
 footer{
     position: relative;
     left: 0;
