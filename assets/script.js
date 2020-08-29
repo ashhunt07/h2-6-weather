@@ -16,7 +16,7 @@ var searchHistory = $("<p>").attr('class', 'seachList');
 
 
 //right area containers
-var results = $("<div>").attr('class', 'searchResult row col-8');
+var searchResults = $("<div>").attr('class', 'searchResult row col-8');
 
 var currentCity = $("<div>").attr('class', 'currentCity card-body row col-12');
 var currentTitle = $("<h3>").attr('class', 'card-title');
@@ -25,8 +25,6 @@ var cityTemp = $("<p>").attr('class', 'card-text');
 var humidity = $("<p>").attr('class', 'card-text');
 var windSpeed = $("<p>").attr('class', 'card-text');
 var uv = $("<p>").attr('class', 'card-text');
-
-
 
 
 
@@ -42,8 +40,7 @@ let dailyURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&
 // searchHistory.val(value);
 
 $(document).ready(function(){
-
-
+    
     
 // buttonEl.on("click", function() {
 //     // var city = $(this).siblings("input").val();
@@ -52,6 +49,10 @@ $(document).ready(function(){
     
 //     getWeather(city);
 // function getWeather(city){
+
+    
+        // windSpeed.text(response.wind.speed);
+        // console.log(response.wind.speed);
     
     
     $.ajax({
@@ -75,47 +76,39 @@ $(document).ready(function(){
         for(i = 0; i < 5; i++){  
             
             currentCity.text("");
-        
             currentCity.text(weatherResponse.name);
-            console.log(weatherResponse.name);
+
             //results
             var weatherEl = $("<div>").attr('class', 'weatherBlock card-body align-items-start flex-wrap');
             var weatherDate = $("<h6>").attr('class', 'card-title');
-            var weatherIcon = $("<img>").attr("src", "http://openweathermap.org/img/w/" + iconCode + ".png");
+            var weatherIcon = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + iconCode + "@2x.png");
                 var iconCode = weatherResponse.weather[0].icon;
             var weatherTemp = $("<p>").attr('class', 'card-text');
             var weatherHumid = $("<p>").attr('class', 'card-text');
 
-
+            //formatting information
             weatherDate.text(moment().add(i+1, "days").format("l"));
 
             // weatherIcon.attr("src", "http://openweathermap.org/img/w/" + weatherResponse[i+1].weather[0].iconCode + ".png");
             // weatherTemp.text("Temp: " + weatherResponse[i+1].temp.max + " F");
             // weatherHumid.text("Humidity: " + weatherResponse[i+1].humidity + " %");
             
-            weatherTemp.text("Temp: " + weatherResponse.main.temp  + " F"); 
-            
+            weatherTemp.text("Temp: " + weatherResponse.main.temp_max  + " F"); 
             weatherHumid.text("Humidity: " + weatherResponse.main.humidity + " %");
-    
 
-            
-            console.log(weatherResponse.weather[0].icon);
-            console.log(weatherResponse.main.humidity);
-            console.log(weatherResponse.main.temp);
-        
-        
-        // windSpeed.text(response.wind.speed);
-        // console.log(response.wind.speed);
+            //result or search weather block
+            searchResults.append(weatherEl);
 
+            //append weather block elements
+            weatherEl.append(weatherDate);
+            weatherEl.append(weatherIcon);
+            weatherEl.append(weatherTemp);
+            weatherEl.append(weatherHumid);
 
-        //result or search weather block
-        results.append(weatherEl);
-
-        //append weather block elements
-        weatherEl.append(weatherDate);
-        weatherEl.append(weatherIcon);
-        weatherEl.append(weatherTemp);
-        weatherEl.append(weatherHumid);
+        console.log(weatherResponse.name);
+        console.log(weatherResponse.weather[0].icon);
+        console.log(weatherResponse.main.humidity);
+        console.log(weatherResponse.main.temp); 
 
         }
 
@@ -136,10 +129,10 @@ lookUp.append(searchHistory);
 
 
 //append results
-cont.append(results);
+cont.append(searchResults);
 
 //append currentCity 
-results.append(currentCity);
+searchResults.append(currentCity);
 
 //current city top level info
 currentCity.append(currentTitle)
