@@ -5,14 +5,14 @@ body{
 
 h1{
     width: 100%;
-    font-size:2em;
-    color:#fff;
+    font-size:4em;
 }
 
 #header{
     min-width: 100%; 
     background-color: #333A41;
     text-align: center;
+    color:#fff;
 }
 
 #container{
@@ -21,38 +21,47 @@ h1{
 }
 
 .lookUp{
-    background-color:purple;
+    margin: 0 auto;
+    align-content: center;
 }
 
 .inputCity{
-    width:70%;
+    width:50%;
     height: 3em;
     resize: none; 
-    clear: both;
-    margin: 2em 0 0 5%;
+    display: block;
+    margin: 1em auto;
+
 }
 
 .btn-primary{
-    width:70%;
+    width:50%;
     height: 50px;
+    display: block;
+    margin: 1em auto;
     color:white;
-    margin: 1em 0 0 5%;
+    
 }
 
 .seachList{
-    width:70%;
-    display: block;
+    width:100%;
+    padding: 1em 2.5%;
+    margin: 2em 0;
+    display: inline-block;
     clear:both;
+    background-color:red;
 }
 
 .searchResult{
     padding: 1em 2.5%;
-    width: 100%;
+    margin:0 auto;
+    width: 90%;
 }
 
 .weatherBlock{
-    min-width: 20%;
-    margin: 0 2% 1em;
+    min-width: 210px;
+    max-width: 210px;
+    margin: 0 1% 1em;
     background-color: seashell;
 }
 
