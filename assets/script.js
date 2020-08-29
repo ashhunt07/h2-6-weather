@@ -1,7 +1,41 @@
 
 //global variables
-let city = "Austin";
+// let city = [];
 
+var cont = $("#container").attr('class', 'content row col-12');
+
+//left area containers
+var lookUp = $("<div>").attr('class', 'lookUp row col-4');
+
+var searchDiv = $("<textarea>").attr('class', 'inputCity');
+
+var buttonEl = $("<button>").attr('class', 'btn btn-primary searchBtn');
+var searchEl = document.createTextNode("Click me");
+
+var searchHistory = $("<p>").attr('class', 'seachList');
+
+
+//right area containers
+var results = $("<div>").attr('class', 'searchResult row col-8');
+
+var currentCity = $("<div>").attr('class', 'currentCity card-body row col-12');
+var currentTitle = $("<h3>").attr('class', 'card-title');
+var cityTemp = $("<p>").attr('class', 'card-text');
+
+var humidity = $("<p>").attr('class', 'card-text');
+var windSpeed = $("<p>").attr('class', 'card-text');
+var uv = $("<p>").attr('class', 'card-text');
+
+//results
+var weatherEl = $("<div>").attr('class', 'weatherBlock card-body row col-12');
+var weatherDate = $("<h5>").attr('class', 'card-title');
+var weatherIcon = $("<img>");
+var weatherTemp = $("<p>").attr('class', 'card-text');
+var weatherHumid = $("<p>").attr('class', 'card-text');
+
+
+
+let city = searchDiv.val();
 const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
 let currentURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
 let dailyURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&exclude=hourly,minutely&appid=" + apiKey;
@@ -12,7 +46,19 @@ let dailyURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&
 
 $(document).ready(function(){
 
-function getWeather(){
+
+buttonEl.on("click", function() {
+    // var city = $(this).siblings("input").val();
+    event.preventDefault();  
+    searchDiv.val("");
+    
+
+    getWeather(city);
+
+
+
+
+function getWeather(city){
     
     
     $.ajax({
@@ -61,58 +107,6 @@ function getWeather(){
         })    
     
 
-    var cont = $("#container");
-        cont.attr('class', 'content row col-12');
-
-
-//left area containers
-    var lookUp = $("<div>")
-        lookUp.attr('class', 'lookUp row col-4');
-
-
-        
-//seartch and save functions with history
-    var searchDiv = $("<textarea>");
-        searchDiv.attr('class', 'inputCity')
-
-    var buttonEl = $("<button>");
-        buttonEl.attr('class', 'btn btn-primary searchBtn');
-        var searchEl = document.createTextNode("Click me");
-
-
-
-    var searchHistory = $("<p>")
-        searchHistory.attr('class', 'seachList')
-
-
-//right area containers
-    var results =  $("<div>")
-        results.attr('class', 'searchResult row col-8')
-
-    var currentCity = $("<div>");
-        currentCity.attr('class', 'currentCity card-body row col-12')
-    var currentTitle = $("<h3>");
-        currentTitle.attr('class', 'card-title')
-    var cityTemp = $("<p>");
-        cityTemp.attr('class', 'card-text')
-    var humidity = $("<p>");
-        humidity.attr('class', 'card-text')
-    var windSpeed = $("<p>");
-        windSpeed.attr('class', 'card-text')
-    var uv = $("<p>");
-        uv.attr('class', 'card-text')
-    //results
-    var weatherEl = $("<div>");
-        weatherEl.attr('class', 'weatherBlock card-body row col-12')
-    var weatherDate = $("<h5>");
-        weatherDate.attr('class', 'card-title')
-    var weatherIcon = $("<img>");
-    var weatherTemp = $("<p>");
-        weatherTemp.attr('class', 'card-text')
-    var weatherHumid = $("<p>");
-        weatherHumid.attr('class', 'card-text')
-
-
 //append lookUp seach elements
 cont.append(lookUp);
 lookUp.append(searchDiv);
@@ -144,13 +138,6 @@ weatherEl.append(weatherIcon);
 weatherEl.append(weatherTemp);
 weatherEl.append(weatherHumid);
 
-
-buttonEl.on("click", function() {
-event.preventDefault();
-
-})
-
-
     
 
 
@@ -160,5 +147,6 @@ event.preventDefault();
 
     getWeather()
 
+})
 });
 
