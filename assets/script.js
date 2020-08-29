@@ -5,7 +5,7 @@
 var cont = $("#container").attr('class', 'content row col-12');
 
 //left area containers
-var lookUp = $("<div>").attr('class', 'lookUp row col-4');
+var lookUp = $("<div>").attr('class', 'lookUp col-4');
 
 var searchDiv = $("<textarea>").attr('class', 'inputCity');
 
@@ -26,16 +26,13 @@ var humidity = $("<p>").attr('class', 'card-text');
 var windSpeed = $("<p>").attr('class', 'card-text');
 var uv = $("<p>").attr('class', 'card-text');
 
-//results
-var weatherEl = $("<div>").attr('class', 'weatherBlock card-body row col-12');
-var weatherDate = $("<h5>").attr('class', 'card-title');
-var weatherIcon = $("<img>");
-var weatherTemp = $("<p>").attr('class', 'card-text');
-var weatherHumid = $("<p>").attr('class', 'card-text');
 
 
 
-let city = searchDiv.val();
+
+// let city = searchDiv.val();
+
+let city = "Austin";
 const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
 let currentURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
 let dailyURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&exclude=hourly,minutely&appid=" + apiKey;
@@ -47,18 +44,14 @@ let dailyURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&
 $(document).ready(function(){
 
 
-buttonEl.on("click", function() {
-    // var city = $(this).siblings("input").val();
-    event.preventDefault();  
-    searchDiv.val("");
     
-
-    getWeather(city);
-
-
-
-
-function getWeather(city){
+// buttonEl.on("click", function() {
+//     // var city = $(this).siblings("input").val();
+//     event.preventDefault();  
+//     searchDiv.val("");
+    
+//     getWeather(city);
+// function getWeather(city){
     
     
     $.ajax({
@@ -76,35 +69,62 @@ function getWeather(city){
     $.ajax({
         url: currentURL,
         method: "GET"
-    }).then(function(response){
-        console.log(response);
+    }).then(function(weatherResponse){
+        console.log(weatherResponse);
 
-        var results = response.data;
-
-        for (var i = 0; i < results.length; i++){
-
-        currentCity.text(response.name);
-        console.log(response.name);
+        for(i = 0; i < 5; i++){  
+            
+            currentCity.text("");
         
-        // console.log(response.weather[0].description);
-        var iconCode = response.weather[0].icon
-        var iconurl = "http://openweathermap.org/img/w/" + iconCode + ".png";
-        weatherIcon.html('src', iconurl);
-        console.log(response.weather[0].icon);
-        
-        humidity.text(response.main.humidity);
-        console.log(response.main.humidity);
-        
-        cityTemp.text(response.main.temp);
-        console.log(response.main.temp);
+            currentCity.text(weatherResponse.name);
+            console.log(weatherResponse.name);
+            //results
+            var weatherEl = $("<div>").attr('class', 'weatherBlock card-body align-items-start flex-wrap');
+            var weatherDate = $("<h6>").attr('class', 'card-title');
+            var weatherIcon = $("<img>").attr("src", "http://openweathermap.org/img/w/" + iconCode + ".png");
+                var iconCode = weatherResponse.weather[0].icon;
+            var weatherTemp = $("<p>").attr('class', 'card-text');
+            var weatherHumid = $("<p>").attr('class', 'card-text');
 
-        windSpeed.text(response.wind.speed);
-        console.log(response.wind.speed);
 
+            weatherDate.text(moment().add(i+1, "days").format("l"));
+
+            // weatherIcon.attr("src", "http://openweathermap.org/img/w/" + weatherResponse[i+1].weather[0].iconCode + ".png");
+            // weatherTemp.text("Temp: " + weatherResponse[i+1].temp.max + " F");
+            // weatherHumid.text("Humidity: " + weatherResponse[i+1].humidity + " %");
+            
+            weatherTemp.text("Temp: " + weatherResponse.main.temp  + " F"); 
+            
+            weatherHumid.text("Humidity: " + weatherResponse.main.humidity + " %");
+    
+
+            
+            console.log(weatherResponse.weather[0].icon);
+            console.log(weatherResponse.main.humidity);
+            console.log(weatherResponse.main.temp);
+        
+        
+        // windSpeed.text(response.wind.speed);
+        // console.log(response.wind.speed);
+
+
+        //result or search weather block
+        results.append(weatherEl);
+
+        //append weather block elements
+        weatherEl.append(weatherDate);
+        weatherEl.append(weatherIcon);
+        weatherEl.append(weatherTemp);
+        weatherEl.append(weatherHumid);
 
         }
 
-        })    
+        
+
+        // }
+
+        })   
+        
     
 
 //append lookUp seach elements
@@ -128,24 +148,16 @@ currentCity.append(humidity);
 currentCity.append(windSpeed);
 currentCity.append(uv);
 
-//result or search weather block
-results.append(weatherEl);
 
-//append weather block elements
-weatherEl.append(weatherDate);
-
-weatherEl.append(weatherIcon);
-weatherEl.append(weatherTemp);
-weatherEl.append(weatherHumid);
 
     
 
 
 
-})
-    }
+// })
+    // }
 
-    getWeather()
+    // getWeather()
 
 })
 });
