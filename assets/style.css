@@ -52,6 +52,16 @@ h1{
     background-color:red;
 }
 
+.currentCity{
+    width:50%;
+    background-color: sienna;
+}
+
+.fiveDays{
+    width:50%;
+    background-color: peachpuff;
+}
+
 .searchResult{
     padding: 1em 2.5%;
     margin:0 auto;
@@ -59,9 +69,7 @@ h1{
 }
 
 .weatherBlock{
-    min-width: 210px;
-    max-width: 210px;
-    margin: 0 1% 1em;
+    width:20%;
     background-color: seashell;
 }
 
