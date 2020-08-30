@@ -25,6 +25,7 @@ h1{
 
 /* Search Content Area */
 .lookUp{
+    width:100%;
     margin: 0 auto;
     align-content: center;
 }
@@ -119,13 +120,6 @@ h1{
     font-weight: 900;
     color:blue;
 }
-
-/* Start of 5 Day Elements */
-/* .searchResult{
-    padding: 1em 2.5%;
-    margin:0 auto;
-    width: 90%;
-} */
 
 .fiveDays{
     width:flex;
