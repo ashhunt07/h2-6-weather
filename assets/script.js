@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 //Render weather for previous session's last search
-weather(JSON.parse(localStorage.getItem("lastCity")))
+// weather(JSON.parse(localStorage.getItem("lastCity")))
 
 
 // Stops cross-site cookie alert in console
@@ -30,6 +30,7 @@ const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
         var searchHistory = $("<div>")
             searchHistory.attr('class', 'seachList')
 
+
             $(buttonEl).on("click", function(){
                 event.preventDefault();
                 let city = $(searchDiv).val();
@@ -39,7 +40,7 @@ const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
                 $(searchDiv).empty();
                 weather(city);
 
-                localStorage.setItem("lastCity", JSON.stringify(city));
+                // localStorage.setItem("lastCity", JSON.stringify(city));
             })
 
 
