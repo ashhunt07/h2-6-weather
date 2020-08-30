@@ -30,10 +30,11 @@ const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
                 event.preventDefault();
                 let city = $(searchDiv).val();
                 $(searchDiv).val();
-        
-        
+
+                $(searchDiv).empty();
                 weather(city);
             })
+
 
         //append lookUp seach elements
         $("#header").append(lookUp);
@@ -57,10 +58,9 @@ function weather(city){
     }).then(function(weatherResponse){
         console.log(weatherResponse);
 
-
     var lat = weatherResponse.coord.lat;
     var lon = weatherResponse.coord.lon;
-    var uvURL ="http://api.openweathermap.org/data/2.5/uvi?appid=" + apiKey +"&lat=" +lat+ "&lon="+lon;
+    var uvURL = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" +lon + "&appid=" + apiKey;
 
     $.ajax({
         url: uvURL,
@@ -86,14 +86,14 @@ function weather(city){
             currentDesc.text(weatherResponse.weather[0].description)
             humidity.text("Humidity: " + weatherResponse.main.humidity + " %");
             windSpeed.text("Wind Speed: " +weatherResponse.wind.speed + " mph")
-            uv.text("UV Index: " + uvResponse.value);
-                if(uvResponse.value>=8){
+            uv.text("UV Index: " + uvResponse.daily[0].uvi);
+                if(uvResponse.daily[0].uvi>=8){
                     uv.attr('class', 'uvBad col-12');
-                }else if(weatherResponse.value>=6 && uvResponse.value<8){
+                }else if(uvResponse.daily[0].uvi<8){
                     uv.attr('class', 'uvMod col-12');
-                }else if(weatherResponse.value>=3 && uvResponse.value<6){
+                }else if(uvResponse.daily[0].uvi<6){
                     uv.attr('class', 'uvGood col-12');
-                }else if(weatherResponse.value>0 && uvResponse.value<3){
+                }else if(uvResponse.daily[0].uvi<3){
                     uv.attr('class' , 'uvLow col-12');
                 }
 
