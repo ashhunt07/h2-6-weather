@@ -122,7 +122,8 @@ h1{
 }
 
 .fiveDays{
-    width:100%;
+    width: flex;
+    min-width:100%;
     margin: 0 .5%;
 }
 
@@ -152,7 +153,8 @@ footer{
             width:100%;
         }
         .fiveDays{
-            width:100%;
+            width: flex;
+            min-width:100%;
         }
         
         .btn-primary{
@@ -170,6 +172,7 @@ footer{
             width:100%;
         }
         .fiveDays{
+            width: flex;
             min-width:40%;
         }
         
@@ -190,6 +193,7 @@ footer{
         }
 
         .fiveDays{
+            width: flex;
             min-width:40%;
         }
         
