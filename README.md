@@ -22,7 +22,7 @@ I was able to achieve a majoity of the functionality but due to challenges durin
 ### __Example__
 <br>
 
-![Screen Cap](images/weather-screenshot.png)
+![Screen Cap](./assets/images/weather-screenshot.png)
 
 <br>
 
