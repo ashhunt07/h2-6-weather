@@ -29,10 +29,9 @@ const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
             $(buttonEl).on("click", function(){
                 event.preventDefault();
                 let city = $(searchDiv).val();
-                $(searchDiv).val();
+                $(searchDiv).val("");
 
                 $("#container").empty();
-                $(".inputCity").empty();
                 weather(city);
             })
 
