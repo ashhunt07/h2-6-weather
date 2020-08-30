@@ -154,7 +154,7 @@ footer{
         }
         .fiveDays{
             width: flex;
-            min-width:100%;
+            max-width:100%;
         }
         
         .btn-primary{
@@ -173,7 +173,7 @@ footer{
         }
         .fiveDays{
             width: flex;
-            min-width:40%;
+            max-width:40%;
         }
         
         .btn-primary{
@@ -194,7 +194,7 @@ footer{
 
         .fiveDays{
             width: flex;
-            min-width:40%;
+            max-width:40%;
         }
         
         
@@ -215,7 +215,7 @@ footer{
 
         .fiveDays{
             width: flex;
-            min-width:30%;
+            max-width:30%;
         }
         
         .btn-primary{
@@ -235,7 +235,7 @@ footer{
 
         .fiveDays{
             width: flex;
-            min-width:19%;
+            max-width:19%;
         }
         
         .btn-primary{
