@@ -1,6 +1,7 @@
 body{
     width: 100%;
-    background-color:#FAFAFA;
+    background-color: #333A41;
+
 }
 
 h1{
@@ -10,35 +11,33 @@ h1{
 
 #header{
     min-width: 100%; 
-    background-color: #333A41;
     text-align: center;
+    background-color: #333A41;
     color:#fff;
 }
 
 #container{
     width:100%;
-    background-color:pink;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
+/* Search Content Area */
 .lookUp{
     margin: 0 auto;
     align-content: center;
 }
 
 .inputCity{
-    width:50%;
+    width:30%;
     height: 3em;
     resize: none; 
-    display: block;
-    margin: 1em auto;
 
 }
 
 .btn-primary{
-    width:50%;
+    width:30%;
     height: 50px;
-    display: block;
-    margin: 1em auto;
     color:white;
     
 }
@@ -52,34 +51,87 @@ h1{
     background-color:red;
 }
 
-.currentCity{
-    width:50%;
-    background-color: sienna;
-}
+/* Current City Search box */
 
-.fiveDays{
-    width:50%;
-    background-color: peachpuff;
-}
-
-.searchResult{
+.result{
     padding: 1em 2.5%;
     margin:0 auto;
     width: 90%;
 }
 
-.weatherBlock{
-    width:20%;
+.currentCity{
+    width:50%;
+    margin: 0 auto;
     background-color: seashell;
+    clear:both;
 }
 
+.card-text{
+    text-align: center;
+    font-size: 1.25em;
+}
+
+.temp{
+    font-size: 4em;
+    text-align: center;
+}
+
+.currentDesc{
+    text-align: center;
+    font-size: 1em;
+}
+
+/* UV Index Color Change */
+.uvBad{
+    text-align: center;
+    font-weight: 900;
+    color:orange;
+}
+
+.uvMod{
+    text-align: center;
+    font-weight: 900;
+    color:yellow;
+}
+
+.uvGood{
+    text-align: center;
+    font-weight: 900;
+    color: green;
+}
+
+.uvLow{
+    text-align: center;
+    font-weight: 900;
+    color:blue;
+}
+
+/* Start of 5 Day Elements */
+/* .searchResult{
+    padding: 1em 2.5%;
+    margin:0 auto;
+    width: 90%;
+} */
+
+.fiveDays{
+    width:flex;
+    min-width:19%;
+    margin: 1em .5%;
+}
+
+.weatherBlock{
+    background-color: seashell;
+    width: 100%;
+}
+
+/* Footer */
 footer{
     position: relative;
     bottom: 0;
     width: 100%;
     padding: 1em 0 .5em;
     margin-top: 3em;
-    background: #333A41;
-    color: #fff;
+    background:seashell;
+    color: #333A41;
     text-align: center;
 }
