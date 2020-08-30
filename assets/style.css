@@ -100,30 +100,29 @@ h1{
 .uvBad{
     text-align: center;
     font-weight: 900;
-    color:orange;
+    color:darkorange;
 }
 
 .uvMod{
     text-align: center;
     font-weight: 900;
-    color:yellow;
+    color:darkgoldenrod;
 }
 
 .uvGood{
     text-align: center;
     font-weight: 900;
-    color: green;
+    color: rgb(51, 141, 51);
 }
 
 .uvLow{
     text-align: center;
     font-weight: 900;
-    color:blue;
+    color:royalblue;
 }
 
 .fiveDays{
-    width:flex;
-    min-width:19%;
+    width:100%;
     margin: 0 .5%;
 }
 
@@ -171,7 +170,8 @@ footer{
             width:100%;
         }
         .fiveDays{
-            width:80%;
+            width: flex;
+            min-width:80%;
         }
         
         .btn-primary{
@@ -191,6 +191,7 @@ footer{
         }
 
         .fiveDays{
+            width: flex;
             width:50%;
         }
         
@@ -211,6 +212,7 @@ footer{
         }
 
         .fiveDays{
+            width: flex;
             min-width:19%;
         }
         
@@ -230,6 +232,7 @@ footer{
         }
 
         .fiveDays{
+            width: flex;
             min-width:19%;
         }
         
