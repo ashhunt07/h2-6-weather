@@ -152,6 +152,9 @@ footer{
         .inputCity{
             width:100%;
         }
+        .fiveDays{
+            width:100%;
+        }
         
         .btn-primary{
             width:100%;
@@ -166,6 +169,9 @@ footer{
     @media (min-width: 576px) and (max-width: 767.98px) {
         .inputCity{
             width:100%;
+        }
+        .fiveDays{
+            width:80%;
         }
         
         .btn-primary{
@@ -183,6 +189,11 @@ footer{
         .inputCity{
             width:50%;
         }
+
+        .fiveDays{
+            width:50%;
+        }
+        
         
         .btn-primary{
             width:30%;
@@ -198,6 +209,10 @@ footer{
         .inputCity{
             width:50%;
         }
+
+        .fiveDays{
+            min-width:19%;
+        }
         
         .btn-primary{
             width:30%;
@@ -212,6 +227,10 @@ footer{
     @media (min-width: 1200px) {
         .inputCity{
             width:50%;
+        }
+
+        .fiveDays{
+            min-width:19%;
         }
         
         .btn-primary{
