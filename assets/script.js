@@ -3,18 +3,10 @@ $(document).ready(function(){
 // Stops cross-site cookie alert in console
 document.cookie = "cross-site-cookie=bar; SameSite=Lax";
 
-var city = $(searchDiv).val();
-
-$(buttonEl).on("click", function(){
-        event.preventDefault();
-        $(searchDiv).val("");
-
-        weather(city);
-    })
-
+let city="";
 
 //global variables
-// let city = "Austin";
+
 const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
 
 // Main Container
@@ -24,21 +16,34 @@ const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
     var lookUp = $("<div>").attr('class', 'lookUp row col-8 justify-content-center');
 
     var searchForm = $("<div>").attr('class', 'searchBlock col-8 form-inline justify-content-center');
-    //seartch and save functions with history
-        var searchDiv = $("<textarea>").attr('class', 'inputCity');
-
+    //search and save functions with history
         var buttonEl = $("<button>");
             buttonEl.attr('class', 'btn btn-primary searchBtn');
             var searchEl = document.createTextNode("Click me");
 
+            var searchDiv = $("<textarea>").attr('class', 'inputCity');
+
         var searchHistory = $("<p>")
             searchHistory.attr('class', 'seachList')
 
+            $(buttonEl).on("click", function(){
+                event.preventDefault();
+                let city = $(searchDiv).val();
+                $(searchDiv).val();
+        
+        
+                weather(city);
+            })
 
+        //append lookUp seach elements
+        $("#header").append(lookUp);
+        lookUp.append(searchForm);
+            searchForm.append(searchDiv);
+            searchForm.append(buttonEl);
+                buttonEl.append(searchEl);
+        lookUp.append(searchHistory);
 
         weather(city);
-
-
 
 
 //function for calling weather APIS
@@ -170,13 +175,6 @@ let fiveDayURL ="https://api.openweathermap.org/data/2.5/onecall?lat=" +lat+ "&l
     })
 })
 
-//append lookUp seach elements
-    $("#header").append(lookUp);
-    lookUp.append(searchForm);
-        searchForm.append(searchDiv);
-        searchForm.append(buttonEl);
-            buttonEl.append(searchEl);
-    lookUp.append(searchHistory);
 
 
 }
