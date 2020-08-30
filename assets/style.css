@@ -13,7 +13,8 @@ h1{
     min-width: 100%; 
     text-align: center;
     background-color: #333A41;
-    color:#fff;
+    color: rgb(236, 228, 222);
+    padding-bottom:0;
 }
 
 #container{
@@ -28,8 +29,12 @@ h1{
     align-content: center;
 }
 
+.searchBlock{
+    margin: 2em 0 0;
+}
+
 .inputCity{
-    width:30%;
+    width:50%;
     height: 3em;
     resize: none; 
 
@@ -37,18 +42,27 @@ h1{
 
 .btn-primary{
     width:30%;
-    height: 50px;
+    height: 3em;
     color:white;
-    
+    background-color:#FE7D6A; 
+    border:none;
+    box-shadow: none;
 }
+
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active{
+    background-color:#FC4C4E; 
+    border:none;
+    box-shadow: none;
+}
+
 
 .seachList{
     width:100%;
     padding: 1em 2.5%;
-    margin: 2em 0;
+    margin: 2em 0 0;
     display: inline-block;
     clear:both;
-    background-color:red;
 }
 
 /* Current City Search box */
@@ -62,7 +76,7 @@ h1{
 .currentCity{
     width:50%;
     margin: 0 auto;
-    background-color: seashell;
+    background-color: rgb(236, 228, 222);
     clear:both;
 }
 
@@ -73,7 +87,7 @@ h1{
 
 .temp{
     font-size: 4em;
-    text-align: center;
+
 }
 
 .currentDesc{
@@ -116,12 +130,13 @@ h1{
 .fiveDays{
     width:flex;
     min-width:19%;
-    margin: 1em .5%;
+    margin: 0 .5%;
 }
 
 .weatherBlock{
-    background-color: seashell;
+    background-color: rgb(236, 228, 222);
     width: 100%;
+    margin: 2em 0 1em;
 }
 
 /* Footer */
@@ -131,7 +146,35 @@ footer{
     width: 100%;
     padding: 1em 0 .5em;
     margin-top: 3em;
-    background:seashell;
-    color: #333A41;
+    /* background:peachpuff; */
+    color: rgb(236, 228, 222);
+    font-size: 12px;
     text-align: center;
 }
+
+
+    /*Extra small devices (portrait phones, less than 576px) */
+    @media (max-width: 575.98px) {
+
+    }
+    
+    /* Small devices (landscape phones, 576px and up) */
+    @media (min-width: 576px) and (max-width: 767.98px) {
+
+    }
+    
+    
+    /* Medium devices (tablets, 768px and up) */
+    @media (min-width: 768px) and (max-width: 991.98px) {
+
+    }
+    
+    /* Large devices (desktops, 992px and up) */
+    @media (min-width: 992px) and (max-width: 1199.98px) { 
+
+    }
+    
+    /* Extra large devices (large desktops, 1200px and up) */
+    @media (min-width: 1200px) {
+
+    }

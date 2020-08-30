@@ -3,18 +3,27 @@ $(document).ready(function(){
 // Stops cross-site cookie alert in console
 document.cookie = "cross-site-cookie=bar; SameSite=Lax";
 
+var city = $(searchDiv).val();
+
+$(buttonEl).on("click", function(){
+        event.preventDefault();
+        $(searchDiv).val("");
+
+        weather(city);
+    })
+
 
 //global variables
-let city = "Austin";
+// let city = "Austin";
 const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
 
 // Main Container
     var cont = $("#container").attr('class', 'content row col-12 row justify-content-center');
 
 //Top menu Items
-    var lookUp = $("<div>").attr('class', 'lookUp row col-8');
+    var lookUp = $("<div>").attr('class', 'lookUp row col-8 justify-content-center');
 
-    var searchForm = $("<div>").attr('class', 'searchBlock col-8 form-inline');
+    var searchForm = $("<div>").attr('class', 'searchBlock col-8 form-inline justify-content-center');
     //seartch and save functions with history
         var searchDiv = $("<textarea>").attr('class', 'inputCity');
 
@@ -25,15 +34,11 @@ const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
         var searchHistory = $("<p>")
             searchHistory.attr('class', 'seachList')
 
+
+
         weather(city);
 
-//append lookUp seach elements
-    $("#header").append(lookUp);
-    lookUp.append(searchForm);
-        searchForm.append(searchDiv);
-        searchForm.append(buttonEl);
-            buttonEl.append(searchEl);
-    lookUp.append(searchHistory);
+
 
 
 //function for calling weather APIS
@@ -62,8 +67,8 @@ function weather(city){
 
             var currentCity = $("<div>").attr('class', 'currentCity card');
             var cityName = $("<h2>").attr('class', 'card-tite row col-12 justify-content-center');
-            var currentTemp = $("<p>").attr('class', 'temp row col-12');
-            var weatherImg = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + weatherResponse.weather[0].icon + "@2x.png").attr('class', 'col-2 mx-auto');
+            var currentTemp = $("<p>").attr('class', 'temp row col-12 justify-content-center');
+            var weatherImg = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + weatherResponse.weather[0].icon + "@2x.png").attr('class', 'col-4 mx-auto');
             var currentDesc  = $("<p>").attr('class', 'currentDesc col-12');
             var cityTemp = $("<p>").attr('class', 'card-text col-12');
             var humidity = $("<p>").attr('class', 'card-text col-12');
@@ -164,6 +169,15 @@ let fiveDayURL ="https://api.openweathermap.org/data/2.5/onecall?lat=" +lat+ "&l
 
     })
 })
+
+//append lookUp seach elements
+    $("#header").append(lookUp);
+    lookUp.append(searchForm);
+        searchForm.append(searchDiv);
+        searchForm.append(buttonEl);
+            buttonEl.append(searchEl);
+    lookUp.append(searchHistory);
+
 
 }
 
