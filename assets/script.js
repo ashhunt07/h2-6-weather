@@ -32,6 +32,7 @@ const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
                 $(searchDiv).val("");
 
                 $("#container").empty();
+                $(searchDiv).empty();
                 weather(city);
             })
 
