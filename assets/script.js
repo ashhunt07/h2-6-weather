@@ -14,14 +14,6 @@ const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
 // Main Container
     var cont = $("#container").attr('class', 'content row col-12 row justify-content-center');
 
-
-
-        //Render weather for previous session's last search
-        // weather(JSON.parse(localStorage.getItem("oldCity")))    
-        //     let oldCity = localStorage.getItem("city") || "";
-        //     console.log (oldCity);
-
-
         // Stores previous city to local storage (worked on this with tutor after homework was turned in)
         let oldCity = localStorage.getItem("city") || "";
         console.log('"city" found');
