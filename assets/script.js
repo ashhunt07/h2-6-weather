@@ -14,6 +14,7 @@ const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
 // Main Container
     var cont = $("#container").attr('class', 'content row col-12 row justify-content-center');
 
+
         // Stores previous city to local storage (worked on this with tutor after homework was turned in)
         let oldCity = localStorage.getItem("city") || "";
         console.log('"city" found');
@@ -35,7 +36,6 @@ const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
             
         }
     }
-
 
 
 
@@ -79,7 +79,7 @@ const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
 function weather(city){
 
     // https://cors-anywhere.herokuapp.com/
-    var currentURL = "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
+    var currentURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
     $.ajax({
         url: currentURL,
         method: "GET"
@@ -88,7 +88,7 @@ function weather(city){
 
     var lat = weatherResponse.coord.lat;
     var lon = weatherResponse.coord.lon;
-    var uvURL = "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" +lon + "&appid=" + apiKey;
+    var uvURL = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" +lon + "&appid=" + apiKey;
 
     $.ajax({
         url: uvURL,
@@ -167,7 +167,7 @@ function weather(city){
 
 
 //input lat and lon into these
-let fiveDayURL ="https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/onecall?lat=" +lat+ "&lon=" +lon+ "&exclude=minutely,hourly&units=imperial&appid=" +apiKey;
+let fiveDayURL ="http://api.openweathermap.org/data/2.5/onecall?lat=" +lat+ "&lon=" +lon+ "&exclude=minutely,hourly&units=imperial&appid=" +apiKey;
 
         $.ajax({
             url: fiveDayURL,
