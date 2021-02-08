@@ -8,8 +8,8 @@ let city="";
 
 //global variables
 
-const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
-// const apiKey = "d44348aab07cb6f1275f92fb8051db91";
+// const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
+const apiKey = "d44348aab07cb6f1275f92fb8051db91";
 
 // Main Container
     var cont = $("#container").attr('class', 'content row col-12 row justify-content-center');
