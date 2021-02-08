@@ -1,12 +1,19 @@
 body{
     width: 100%;
     background-color: #333A41;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh !important;
+}
 
+.content-wrap{
+    flex:1;
 }
 
 h1{
     width: 100%;
-    font-size:4em;
+    font-size:2.5em;
+    font-family: 'Special Elite', cursive;
 }
 
 #header{
@@ -31,32 +38,32 @@ h1{
 }
 
 .searchBlock{
-    margin: 2em 0 0;
+    width: 100%;
+    margin: 2em 0;
 }
 
 .inputCity{
-    width:100%;
+    width:200px !important;
     height: 3em;
     resize: none; 
-
+    padding: 10px 20px;
 }
 
 .btn-primary{
-    width:100%;
+    width:50px !important;
     height: 3em;
     color:white;
     background-color:#FE7D6A; 
     border:none;
     box-shadow: none;
+    border-radius: 0% 10% 10% 0 !important;
 }
-
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active{
-    background-color:#FC4C4E; 
-    border:none;
-    box-shadow: none;
+    background-color:#FC4C4E !important; 
+    border:none !important;
+    box-shadow: none !important;
 }
-
 
 .seachList{
     width:100%;
@@ -66,12 +73,12 @@ h1{
     clear:both;
 }
 
-/* Current City Search box */
 
+/* Current City Search box */
 .result{
     padding: 1em 2.5%;
     margin:0 auto;
-    width: 90%;
+    width: 100%;
 }
 
 .currentCity{
@@ -82,49 +89,50 @@ h1{
 }
 
 .card-text{
-    text-align: center;
+    text-align: left;
     font-size: 1.25em;
 }
 
 .temp{
     font-size: 4em;
-
 }
 
 .currentDesc{
-    text-align: center;
-    font-size: 1em;
+    text-align: left;
+    /* font-size: 1em; */
 }
 
 /* UV Index Color Change */
 .uvBad{
-    text-align: center;
+    text-align: left;
     font-weight: 900;
     color:darkorange;
 }
 
 .uvMod{
-    text-align: center;
+    text-align: left;
     font-weight: 900;
     color:darkgoldenrod;
 }
 
 .uvGood{
-    text-align: center;
+    text-align: left;
     font-weight: 900;
     color: rgb(51, 141, 51);
 }
 
 .uvLow{
-    text-align: center;
+    text-align: left;
     font-weight: 900;
     color:royalblue;
 }
 
 .fiveDays{
-    width: flex;
-    min-width:100%;
-    margin: 0 .5%;
+    /* width: 30% !important;
+    min-width:22%; */
+    margin: 2em .5% 0em;
+    /* display: flex; */
+    background-color: rgb(236, 228, 222);
 }
 
 .weatherBlock{
@@ -133,10 +141,11 @@ h1{
     margin: 2em 0 1em;
 }
 
+
 /* Footer */
 footer{
-    position: relative;
     bottom: 0;
+    position: relative;
     width: 100%;
     padding: 1em 0 .5em;
     margin-top: 3em;
@@ -152,14 +161,7 @@ footer{
         .inputCity{
             width:100%;
         }
-        .fiveDays{
-            width: flex;
-            max-width:100%;
-        }
         
-        .btn-primary{
-            width:100%;
-        }
 
         .currentCity{
             width:100%;
@@ -171,14 +173,6 @@ footer{
         .inputCity{
             width:100%;
         }
-        .fiveDays{
-            width: flex;
-            max-width:40%;
-        }
-        
-        .btn-primary{
-            width:100%;
-        }
         
         .currentCity{
             width:100%;
@@ -188,18 +182,12 @@ footer{
     
     /* Medium devices (tablets, 768px and up) */
     @media (min-width: 768px) and (max-width: 991.98px) {
+        h1{
+            font-size:4em !important;
+        }
+        
         .inputCity{
             width:50%;
-        }
-
-        .fiveDays{
-            width: flex;
-            max-width:40%;
-        }
-        
-        
-        .btn-primary{
-            width:30%;
         }
         
         .currentCity{
@@ -209,21 +197,24 @@ footer{
     
     /* Large devices (desktops, 992px and up) */
     @media (min-width: 992px) and (max-width: 1199.98px) { 
-        .inputCity{
-            width:50%;
+
+
+        /* Search Content Area */
+        .lookUp{
+            width:100%;
         }
 
-        .fiveDays{
-            width: flex;
-            max-width:30%;
+        .searchBlock{
+            width: 400px;
+            margin-top: 2em;
         }
-        
-        .btn-primary{
-            width:30%;
+
+        .inputCity{
+            width:300px !important;
         }
 
         .currentCity{
-            width:50%;
+            width:100%;
         }
     }
     
@@ -233,16 +224,4 @@ footer{
             width:50%;
         }
 
-        .fiveDays{
-            width: flex;
-            max-width:19%;
-        }
-        
-        .btn-primary{
-            width:30%;
-        }
-        
-        .currentCity{
-            width:50%;
-        }
     }

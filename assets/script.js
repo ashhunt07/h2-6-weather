@@ -1,17 +1,14 @@
 $(document).ready(function(){
 
-//Render weather for previous session's last search
-// weather(JSON.parse(localStorage.getItem("lastCity")))
-
-
 // Stops cross-site cookie alert in console
 document.cookie = "cross-site-cookie=bar; SameSite=Lax";
 
-let city="";
+let city="converse";
 
 //global variables
 
-const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
+// const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
+const apiKey = "d44348aab07cb6f1275f92fb8051db91";
 
 // Main Container
     var cont = $("#container").attr('class', 'content row col-12 row justify-content-center');
@@ -19,28 +16,25 @@ const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
 //Top menu Items
     var lookUp = $("<div>").attr('class', 'lookUp row col-8 justify-content-center');
 
-    var searchForm = $("<div>").attr('class', 'searchBlock col-8 form-inline justify-content-center');
+    var searchForm = $("<div>").attr('class', 'searchBlock row justify-content-center');
     //search and save functions with history
         var buttonEl = $("<button>");
-            buttonEl.attr('class', 'btn btn-primary searchBtn');
-            var searchEl = document.createTextNode("Click me");
+            buttonEl.attr('class', 'btn btn-primary searchBtn col-auto fa fa-search');
+            // var searchEl = document.createTextNode('<i class="fa fa-trash"></i>');
 
             var searchDiv = $("<textarea>").attr('class', 'inputCity');
 
         var searchHistory = $("<div>")
             searchHistory.attr('class', 'seachList')
 
-
             $(buttonEl).on("click", function(){
-                event.preventDefault();
+                // preventDefault();
                 let city = $(searchDiv).val();
                 $(searchDiv).val("");
 
                 $("#container").empty();
                 $(searchDiv).empty();
                 weather(city);
-
-                // localStorage.setItem("lastCity", JSON.stringify(city));
             })
 
 
@@ -49,17 +43,23 @@ const apiKey = "67d19e2b34aa4341617b42310a8a49b4";
         lookUp.append(searchForm);
             searchForm.append(searchDiv);
             searchForm.append(buttonEl);
-                buttonEl.append(searchEl);
+                // buttonEl.append(searchEl);
         lookUp.append(searchHistory);
 
         weather(city);
 
 
-//function for calling weather APIS
+        //Render weather for previous session's last search
+        // weather(JSON.parse(localStorage.getItem("lastCity")))    
+            let oldCity = localStorage.getItem("city") || "";
+            console.log (oldCity);
 
+
+//function for calling weather APIS
 function weather(city){
 
-    var currentURL = "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
+    // https://cors-anywhere.herokuapp.com/
+    var currentURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
     $.ajax({
         url: currentURL,
         method: "GET"
@@ -68,7 +68,7 @@ function weather(city){
 
     var lat = weatherResponse.coord.lat;
     var lon = weatherResponse.coord.lon;
-    var uvURL = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" +lon + "&appid=" + apiKey;
+    var uvURL = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" +lon + "&appid=" + apiKey;
 
     $.ajax({
         url: uvURL,
@@ -79,15 +79,21 @@ function weather(city){
             var results =  $("<div>").attr('class', 'result col-12');
 
             var currentCity = $("<div>").attr('class', 'currentCity card');
-            var cityName = $("<h2>").attr('class', 'card-tite row col-12 justify-content-center');
-            var currentTemp = $("<p>").attr('class', 'temp row col-12 justify-content-center');
-            var weatherImg = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + weatherResponse.weather[0].icon + "@2x.png").attr('class', 'col-4 mx-auto');
-            var currentDesc  = $("<p>").attr('class', 'currentDesc col-12');
-            var cityTemp = $("<p>").attr('class', 'card-text col-12');
-            var humidity = $("<p>").attr('class', 'card-text col-12');
-            var windSpeed = $("<p>").attr('class', 'card-text col-12');
+            var cardRow = $("<div>").attr('class', 'col-12 row');
+            var imgCol = $("<div>").attr('class', 'col-sm-6 col-lg-3 pt-2');
+            var weatherCol = $("<div>").attr('class', 'col-sm-12 col-lg-6 justify-content-center');
+            var cityName = $("<h2>").attr('class', 'card-tite row justify-content-center');
+            var weekDay = $("<h3>").attr('class', 'card-title row justify-content-center');
+            var currentDate = $("<h5>").attr('class', 'card-title row justify-content-center');
+            var currentTemp = $("<p>").attr('class', 'temp row col-6 justify-content-left');
+            var weatherImg = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + weatherResponse.weather[0].icon + "@2x.png").attr('class', 'col-12');
+            var currentDesc  = $("<p>").attr('class', 'currentDesc col-6');
+            var cityTemp = $("<p>").attr('class', 'card-text col-6');
+            var humidity = $("<p>").attr('class', 'card-text col-6');
+            var windSpeed = $("<p>").attr('class', 'card-text col-6');
             var uv = $("<p>");
 
+            
             // weatherImg.
             cityName.text(weatherResponse.name); 
             currentTemp.text(weatherResponse.main.temp); 
@@ -104,9 +110,11 @@ function weather(city){
                 }else if(uvResponse.daily[0].uvi<3){
                     uv.attr('class' , 'uvLow col-12');
                 }
+            // console.log(uvResponse)
 
-            console.log(uvResponse)
-
+            //Getting cutting date
+            currentDate.text(moment().format('l'));
+            weekDay.text(moment().format('ddd'));
 
             
         //append results
@@ -115,21 +123,32 @@ function weather(city){
         //append currentCity 
         results.append(currentCity);
 
+        // append row
+        currentCity.append(cardRow);
+
+        // append columns
+        cardRow.append(imgCol);
+        cardRow.append(weatherCol);
+        
         //current city top level info
-        currentCity.append (weatherImg);
-        currentCity.append(cityName);
-        currentCity.append(currentTemp);
-        currentCity.append(currentDesc);
-        currentCity.append(cityTemp);
-        currentCity.append(humidity);
-        currentCity.append(windSpeed);
-        currentCity.append(uv);
+        imgCol.append (weatherImg);
+        imgCol.append(cityName);
+        imgCol.append(weekDay);
+        imgCol.append(currentDate);
+
+
+        weatherCol.append(currentTemp);
+        weatherCol.append(currentDesc);
+        weatherCol.append(cityTemp);
+        weatherCol.append(humidity);
+        weatherCol.append(windSpeed);
+        weatherCol.append(uv);
 
 
 
 
 //input lat and lon into these
-let fiveDayURL ="https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/onecall?lat=" +lat+ "&lon=" +lon+ "&exclude=minutely,hourly&units=imperial&appid=" +apiKey;
+let fiveDayURL ="http://api.openweathermap.org/data/2.5/onecall?lat=" +lat+ "&lon=" +lon+ "&exclude=minutely,hourly&units=imperial&appid=" +apiKey;
 
         $.ajax({
             url: fiveDayURL,
@@ -138,18 +157,19 @@ let fiveDayURL ="https://cors-anywhere.herokuapp.com/https://api.openweathermap.
             console.log(fiveDayWeather)
             // fiveDay.text("");
 
-            for(i = 0; i < 5; i++){  
+            for(i = 0; i < 7; i++){  
 
                 // var searchResults =  $("<div>").attr('class', 'searchResult col-12');
 
 
             //results
-                var fiveDay = $("<div>").attr('class', 'fiveDays card-deck');
-                var weatherEl = $("<div>").attr('class', 'weatherBlock card-body flex');
-                var weatherDate = $("<h5>").attr('class', 'card-title row col-12 justify-content-center');
-                var weatherIcon = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + fiveDayWeather.current.weather[0].icon + "@2x.png").attr('class', 'row col-5 mx-auto');
-                var weatherTemp = $("<p>").attr('class', 'card-text row col-12 justify-content-center');
-                var weatherHumid = $("<p>").attr('class', 'card-text row col-12 justify-content-center');
+                var fiveDay = $("<div>").attr('class', 'fiveDays card col-xs-12 col-sm-5 col-md-5 col-lg-2');
+                var weatherEl = $("<div>").attr('class', 'weatherBlock card-body');
+                var weatherDate = $("<h5>").attr('class', 'card-title row justify-content-center');
+                var weatherIcon = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + fiveDayWeather.current.weather[0].icon + "@2x.png").attr('class', 'row mx-auto');
+                var weatherTemp = $("<p>").attr('class', 'card-text row justify-content-center');
+                var weatherHumid = $("<p>").attr('class', 'card-text row justify-content-center');
+
 
 
                 weatherDate.text(moment().add(i+1, "days").format("l"));
@@ -172,19 +192,9 @@ let fiveDayURL ="https://cors-anywhere.herokuapp.com/https://api.openweathermap.
                 weatherEl.append(weatherIcon);
                 weatherEl.append(weatherTemp);
                 weatherEl.append(weatherHumid);
-
-        }
-
-
-})
-
-
-
-    })
-})
-
-
-
-}
-
+                    };
+                });
+            });
+        });
+    };
 }); 
