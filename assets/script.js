@@ -12,7 +12,7 @@ let city="converse";
 const apiKey = "d44348aab07cb6f1275f92fb8051db91";
 
 // Main Container
-    var cont = $("#container").attr('class', 'content row col-12 row justify-content-center');
+    var cont = $("#container").attr('class', 'content col-12 row justify-content-center');
 
 
         // Stores previous city to local storage (worked on this with tutor after homework was turned in)
@@ -40,8 +40,6 @@ const apiKey = "d44348aab07cb6f1275f92fb8051db91";
 
 
 //Top menu Items
-
-
     var searchForm = $("<form>").attr('class', 'searchBlock d-flex');
     //search and save functions with history
         var buttonEl = $("<button>");
@@ -66,10 +64,8 @@ const apiKey = "d44348aab07cb6f1275f92fb8051db91";
 
         //append lookUp seach elements
         $("#form").append(searchForm);
-        // lookUp.append(searchForm);
             searchForm.append(searchDiv);
             searchForm.append(buttonEl);
-        // lookUp.append(searchHistory);
 
         weather(city);
 
@@ -96,7 +92,7 @@ function weather(city){
     }).then(function(uvResponse){
 
         //main container with all weather lookup information
-            var results =  $("<div>").attr('class', 'result col-12 mx-auto');
+            var results =  $("#results").attr('class', 'result col-12 mx-auto');
 
             var currentCity = $("<div>").attr('class', 'currentCity card mx-auto py-4');
             var cardRow = $("<div>").attr('class', 'col-10 row mx-auto');
@@ -130,13 +126,11 @@ function weather(city){
                 }else if(uvResponse.daily[0].uvi<3){
                     uv.attr('class' , 'uvLow');
                 }
-            // console.log(uvResponse)
 
-            //Getting cutting date
+            //Getting currenting date
             currentDate.text(moment().format('l'));
             weekDay.text(moment().format('dddd'));
             
-
             
         //append results
         cont.append(results);
@@ -145,6 +139,7 @@ function weather(city){
         results.append(currentCity);
 
         // append row
+        currentCity.append(cityName)
         currentCity.append(cardRow);
 
         // append columns
@@ -152,7 +147,7 @@ function weather(city){
         cardRow.append(weatherCol);
         
         //current city top level info
-        imgCol.append(cityName);
+        // imgCol.append(cityName);
         imgCol.append (weatherImg);
         imgCol.append(currentDesc);
         imgCol.append(weekDay);
@@ -175,19 +170,20 @@ let fiveDayURL ="https://api.openweathermap.org/data/2.5/onecall?lat=" +lat+ "&l
             url: fiveDayURL,
             method: "GET"
         }).then(function(fiveDayWeather){
-            console.log(fiveDayWeather)
-            // fiveDay.text("");
+            // console.log(fiveDayWeather)
 
             for(i = 0; i < 7; i++){ 
 
             //results
-                var fiveDay = $("<div>").attr('class', 'fiveDays card col-xs-12 col-sm-5 col-md-5 col-lg-3');
-                var weatherEl = $("<div>").attr('class', 'weatherBlock card-body');
-                var weekDay = $("<h3>").attr('class', 'card-title row justify-content-center');
-                var weatherDate = $("<h5>").attr('class', 'card-title row justify-content-center');
-                var weatherIcon = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + fiveDayWeather.current.weather[0].icon + "@2x.png").attr('class', 'row mx-auto');
-                var weatherTemp = $("<p>").attr('class', 'card-text row justify-content-center');
-                var weatherHumid = $("<p>").attr('class', 'card-text row justify-content-center');
+                var multiRes = $("#daily");
+
+                var fiveDay = $("<div>").attr('class', 'fiveDays row justify-content-center');
+                var weatherEl = $("<div>").attr('class', 'weatherBlock justify-content-center');
+                var weekDay = $("<span>").attr('class', 'col');
+                var weatherDate = $("<span>").attr('class', 'col');
+                var weatherIcon = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + fiveDayWeather.current.weather[0].icon + "@2x.png").attr('class', 'col-2');
+                var weatherTemp = $("<span>").attr('class', 'col');
+                var weatherHumid = $("<span>").attr('class', 'col');
 
                 weekDay.text(moment().add(i+1, "days").format('dddd'));
                 weatherDate.text(moment().add(i+1, "days").format("l"));
@@ -196,18 +192,16 @@ let fiveDayURL ="https://api.openweathermap.org/data/2.5/onecall?lat=" +lat+ "&l
                 
 
                 //append results
-                cont.append(fiveDay);
+                cont.append(multiRes);
 
-
-                //append currentCity 
-                // searchResults.append(fiveDay);
+                multiRes.append(fiveDay);
 
                 //result or search weather block
                 fiveDay.append(weatherEl);
                 //append weather block elements
+                weatherEl.append(weatherIcon);
                 weatherEl.append(weekDay)
                 weatherEl.append(weatherDate);
-                weatherEl.append(weatherIcon);
                 weatherEl.append(weatherTemp);
                 weatherEl.append(weatherHumid);
                     };

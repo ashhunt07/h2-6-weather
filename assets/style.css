@@ -13,12 +13,6 @@ body{
     flex:1;
 }
 
-#container{
-    width:100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
 /* Navigation header */
 #header{
     min-width: 100%; 
@@ -74,6 +68,12 @@ form .searchBlock{
     display: inline-block;
     clear:both;
 } */
+
+
+#container{
+    width:100%;
+    margin: 0 auto;
+}
 
 
 /* Current City Search box */
@@ -143,18 +143,24 @@ h2{
     color:royalblue;
 }
 
+
 /* weekly weather */
+
+#daily{
+    width: 100%;
+    background-color: rgb(242, 249, 255);
+}
+
 .fiveDays{
-    margin-top: 1em;
-    background-color: rgb(236, 228, 222);
-    border: 10px solid #333A41;
-    border-radius: 15px;
+    /* margin-top: .25em; */
+    /* border: 10px solid #BCF1FF; */
+    /* border-radius: 15px; */
+    background-color: rgb(242, 249, 255);
 }
 
 .weatherBlock{
-    background-color: rgb(236, 228, 222);
-    width: 100%;
-    margin: 2em 0 1em;
+    width: 50%;
+    /* margin: 2em 0 1em; */
 }
 
 
@@ -164,8 +170,8 @@ footer{
     position: relative;
     width: 100%;
     padding: 1em 0 .5em;
-    margin-top: 3em;
-    /* background:peachpuff; */
+    /* margin-top: 3em; */
+    background-color:#04252e;
     color: rgb(236, 228, 222);
     font-size: 12px;
     text-align: center;
