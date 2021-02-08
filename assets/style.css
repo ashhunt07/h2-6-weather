@@ -1,6 +1,9 @@
 body{
     width: 100%;
-    background-color: #333A41;
+    /* background-color: #333A41; */
+    background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/weather.png");
+    background-repeat: repeat;
+    background-color: #BCF1FF;
     display: flex;
     flex-direction: column;
     min-height: 100vh !important;
@@ -10,36 +13,31 @@ body{
     flex:1;
 }
 
-h1{
-    width: 100%;
-    font-size:2.5em;
-    font-family: 'Special Elite', cursive;
-}
-
-#header{
-    min-width: 100%; 
-    text-align: center;
-    background-color: #333A41;
-    color: rgb(236, 228, 222);
-    padding-bottom:0;
-}
-
 #container{
     width:100%;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Search Content Area */
-.lookUp{
-    width:100%;
-    margin: 0 auto;
-    align-content: center;
+/* Navigation header */
+#header{
+    min-width: 100%; 
+    color: #01171d;
+    padding:1.5em 50px;
 }
 
-.searchBlock{
-    width: 100%;
-    margin: 2em 0;
+#header h1{
+    font-family: 'Special Elite', cursive;
+    font-size:2em;
+    text-align: left;
+}
+
+
+/* input search */
+form .searchBlock{
+    max-width: 50% !important;
+    margin: 0;
+    display: inline;
 }
 
 .inputCity{
@@ -49,83 +47,98 @@ h1{
     padding: 10px 20px;
 }
 
+.inputCity:focus, .inputCity:focus-within, .inputCity:active{
+    outline: none;
+}
+
 .btn-primary{
     width:50px !important;
     height: 3em;
     color:white;
-    background-color:#FE7D6A; 
+    background-color:#04252e;
     border:none;
     box-shadow: none;
     border-radius: 0% 10% 10% 0 !important;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active{
-    background-color:#FC4C4E !important; 
+    background-color:#04252e !important; 
     border:none !important;
     box-shadow: none !important;
 }
 
-.seachList{
+/* .seachList{
     width:100%;
     padding: 1em 2.5%;
     margin: 2em 0 0;
     display: inline-block;
     clear:both;
-}
+} */
 
 
 /* Current City Search box */
 .result{
-    padding: 1em 2.5%;
     margin:0 auto;
     width: 100%;
+    
 }
 
 .currentCity{
     width:100%;
+    padding: 1em 2.5%;
     margin: 0 auto;
-    background-color: rgb(236, 228, 222);
+    background-color: transparent;
     clear:both;
+    border:none;
+}
+
+.imgCol{
+    text-align: center;
+}
+
+.weatherCol{
+    text-align: left;
 }
 
 .card-text{
-    text-align: left;
     font-size: 1.25em;
 }
 
 .temp{
-    font-size: 4em;
+    font-size: 2em;
 }
 
-.currentDesc{
-    text-align: left;
-}
 
 /* Search History */
+.list-group{
+    color: #333A41;
+}
 
+/* Weather Card */
+h2{
+    font-size: 3em;
+    text-align: center;
+    font-family: 'Special Elite', cursive;
+}
 
 
 /* UV Index Color Change */
 .uvBad{
-    text-align: left;
     font-weight: 900;
     color:darkorange;
 }
 
 .uvMod{
-    text-align: left;
     font-weight: 900;
     color:darkgoldenrod;
 }
 
 .uvGood{
-    text-align: left;
     font-weight: 900;
     color: rgb(51, 141, 51);
 }
 
 .uvLow{
-    text-align: left;
     font-weight: 900;
     color:royalblue;
 }
