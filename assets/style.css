@@ -99,8 +99,11 @@ h1{
 
 .currentDesc{
     text-align: left;
-    /* font-size: 1em; */
 }
+
+/* Search History */
+
+
 
 /* UV Index Color Change */
 .uvBad{
@@ -127,12 +130,12 @@ h1{
     color:royalblue;
 }
 
+/* weekly weather */
 .fiveDays{
-    /* width: 30% !important;
-    min-width:22%; */
-    margin: 2em .5% 0em;
-    /* display: flex; */
+    margin-top: 1em;
     background-color: rgb(236, 228, 222);
+    border: 10px solid #333A41;
+    border-radius: 15px;
 }
 
 .weatherBlock{
@@ -161,11 +164,6 @@ footer{
         .inputCity{
             width:100%;
         }
-        
-
-        .currentCity{
-            width:100%;
-        }
     }
     
     /* Small devices (landscape phones, 576px and up) */
@@ -174,9 +172,6 @@ footer{
             width:100%;
         }
         
-        .currentCity{
-            width:100%;
-        }
     }
     
     
@@ -189,10 +184,7 @@ footer{
         .inputCity{
             width:50%;
         }
-        
-        .currentCity{
-            width:100%;
-        }
+
     }
     
     /* Large devices (desktops, 992px and up) */
@@ -213,9 +205,6 @@ footer{
             width:300px !important;
         }
 
-        .currentCity{
-            width:100%;
-        }
     }
     
     /* Extra large devices (large desktops, 1200px and up) */

@@ -13,6 +13,39 @@ const apiKey = "d44348aab07cb6f1275f92fb8051db91";
 // Main Container
     var cont = $("#container").attr('class', 'content row col-12 row justify-content-center');
 
+
+
+        //Render weather for previous session's last search
+        // weather(JSON.parse(localStorage.getItem("oldCity")))    
+        //     let oldCity = localStorage.getItem("city") || "";
+        //     console.log (oldCity);
+
+
+        // Stores previous city to local storage (worked on this with tutor after homework was turned in)
+        let oldCity = localStorage.getItem("city") || "";
+        console.log('"city" found');
+        if (oldCity.length > 0) {
+            searchHistory(oldCity);
+        }
+
+       // Previous city list functionality (worked on this with tutor after homework was turned in)
+    function previousCity(city) {
+       
+        var history = JSON.parse(localStorage.getItem("history")) || [];
+
+        if (history.indexOf(city) === -1) {
+            history.push(city);
+            window.localStorage.setItem("history", JSON.stringify(history));
+            // Adds previously searched cities to search bar card 
+            let cityListItem = $("<li>").addClass("list-group-item").text(city);
+            $(".list").prepend(cityListItem);
+            
+        }
+    }
+
+
+
+
 //Top menu Items
     var lookUp = $("<div>").attr('class', 'lookUp row col-8 justify-content-center');
 
@@ -20,12 +53,11 @@ const apiKey = "d44348aab07cb6f1275f92fb8051db91";
     //search and save functions with history
         var buttonEl = $("<button>");
             buttonEl.attr('class', 'btn btn-primary searchBtn col-auto fa fa-search');
-            // var searchEl = document.createTextNode('<i class="fa fa-trash"></i>');
 
             var searchDiv = $("<textarea>").attr('class', 'inputCity');
 
         var searchHistory = $("<div>")
-            searchHistory.attr('class', 'seachList')
+            searchHistory.attr('class', 'searchList')
 
             $(buttonEl).on("click", function(){
                 // preventDefault();
@@ -35,6 +67,7 @@ const apiKey = "d44348aab07cb6f1275f92fb8051db91";
                 $("#container").empty();
                 $(searchDiv).empty();
                 weather(city);
+
             })
 
 
@@ -43,16 +76,10 @@ const apiKey = "d44348aab07cb6f1275f92fb8051db91";
         lookUp.append(searchForm);
             searchForm.append(searchDiv);
             searchForm.append(buttonEl);
-                // buttonEl.append(searchEl);
         lookUp.append(searchHistory);
 
         weather(city);
 
-
-        //Render weather for previous session's last search
-        // weather(JSON.parse(localStorage.getItem("lastCity")))    
-            let oldCity = localStorage.getItem("city") || "";
-            console.log (oldCity);
 
 
 //function for calling weather APIS
@@ -146,7 +173,6 @@ function weather(city){
 
 
 
-
 //input lat and lon into these
 let fiveDayURL ="http://api.openweathermap.org/data/2.5/onecall?lat=" +lat+ "&lon=" +lon+ "&exclude=minutely,hourly&units=imperial&appid=" +apiKey;
 
@@ -157,26 +183,20 @@ let fiveDayURL ="http://api.openweathermap.org/data/2.5/onecall?lat=" +lat+ "&lo
             console.log(fiveDayWeather)
             // fiveDay.text("");
 
-            for(i = 0; i < 7; i++){  
-
-                // var searchResults =  $("<div>").attr('class', 'searchResult col-12');
-
+            for(i = 0; i < 7; i++){ 
 
             //results
-                var fiveDay = $("<div>").attr('class', 'fiveDays card col-xs-12 col-sm-5 col-md-5 col-lg-2');
+                var fiveDay = $("<div>").attr('class', 'fiveDays card col-xs-12 col-sm-5 col-md-5 col-lg-3');
                 var weatherEl = $("<div>").attr('class', 'weatherBlock card-body');
                 var weatherDate = $("<h5>").attr('class', 'card-title row justify-content-center');
                 var weatherIcon = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + fiveDayWeather.current.weather[0].icon + "@2x.png").attr('class', 'row mx-auto');
                 var weatherTemp = $("<p>").attr('class', 'card-text row justify-content-center');
                 var weatherHumid = $("<p>").attr('class', 'card-text row justify-content-center');
 
-
-
                 weatherDate.text(moment().add(i+1, "days").format("l"));
                 weatherTemp.text("Temp: " + fiveDayWeather.daily[i+1].temp.max + " F"); 
                 weatherHumid.text("Humidity: " + fiveDayWeather.daily[i+1].humidity + " %");
                 
-
 
                 //append results
                 cont.append(fiveDay);
@@ -194,6 +214,8 @@ let fiveDayURL ="http://api.openweathermap.org/data/2.5/onecall?lat=" +lat+ "&lo
                 weatherEl.append(weatherHumid);
                     };
                 });
+
+                previousCity(city);
             });
         });
     };
